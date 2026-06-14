@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "crowdsec",
+  "repo": "crowdsec-stack-module",
+  "runtimeId": "crowdsec",
+  "lifecycle": "active",
+  "dependencies": [
+    "stack-foundation"
+  ],
+  "overlays": [
+    "stack.compose/crowdsec.yml",
+    "stack.config/crowdsec"
+  ]
+}
