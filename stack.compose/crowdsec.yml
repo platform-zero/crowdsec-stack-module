@@ -32,4 +32,14 @@ services:
 
 volumes:
   crowdsec_config:
+    driver: local
+    driver_opts:
+      type: bind
+      o: bind
+      device: ${STACK_VOLUME_ROOT}/crowdsec_config
   crowdsec_data:
+    driver: local
+    driver_opts:
+      type: bind
+      o: bind
+      device: ${STACK_VOLUME_ROOT}/crowdsec_data
