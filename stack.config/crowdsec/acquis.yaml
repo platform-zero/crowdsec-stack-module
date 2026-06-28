@@ -1,6 +1,7 @@
 source: docker
 container_name:
   - caddy
+follow_stderr: false
 labels:
   type: caddy
 ---
