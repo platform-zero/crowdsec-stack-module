@@ -1,0 +1,43 @@
+---
+schemaVersion: 1
+module: "crowdsec"
+target: "observability"
+services:
+  crowdsec:
+    image: "crowdsecurity/crowdsec:v1.6.4"
+    containerName: "crowdsec"
+    lifecycle: "daemon"
+    updatePolicy: "registry"
+    placement: "rootful"
+    dependencies:
+      caddy: "started"
+    environment:
+      COLLECTIONS: "crowdsecurity/linux crowdsecurity/caddy"
+      CUSTOM_HOSTNAME: "webservices-crowdsec"
+      DISABLE_ONLINE_API: "true"
+    networks:
+      caddy: null
+      monitoring: null
+    volumes:
+    - "crowdsec_config:/etc/crowdsec"
+    - "crowdsec_data:/var/lib/crowdsec/data"
+    - "./configs/crowdsec/acquis.yaml:/etc/crowdsec/acquis.yaml:ro"
+    - "./configs/crowdsec/simulate-alert.sh:/usr/local/bin/webservices-crowdsec-simulate-alert:ro"
+    - "/var/log/webservices/caddy:/var/log/webservices/caddy:ro"
+    health:
+      test:
+      - "CMD"
+      - "cscli"
+      - "lapi"
+      - "status"
+      interval: "60s"
+      timeout: "15s"
+      retries: 5
+      start_period: "60s"
+    restart: "unless-stopped"
+networks: {}
+volumes:
+  crowdsec_config:
+    hostPath: "${STACK_VOLUME_ROOT}/crowdsec_config"
+  crowdsec_data:
+    hostPath: "${STACK_VOLUME_ROOT}/crowdsec_data"

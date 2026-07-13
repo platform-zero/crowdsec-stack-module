@@ -1,13 +1,4 @@
-source: docker
-container_name:
-  - caddy
-follow_stderr: false
+filenames:
+  - /var/log/webservices/caddy/access.log
 labels:
   type: caddy
----
-source: docker
-container_name:
-  - keycloak
-  - keycloak-auth-gateway
-labels:
-  type: syslog
