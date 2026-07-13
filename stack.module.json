@@ -10,7 +10,6 @@
   "runtimeDependencies": [
     "stack-foundation",
     "caddy",
-    "docker-proxy",
     "keycloak"
   ],
   "contracts": [
@@ -20,7 +19,8 @@
   "smokeUnsupportedReason": "requires generated bundle context, deployed networking, secrets, or service dependencies",
   "overlays": [
     "stack.compose/crowdsec.yml",
-    "stack.config/crowdsec"
+    "stack.config/crowdsec",
+    "stack.runtime.yaml"
   ],
   "testAssets": []
 }
