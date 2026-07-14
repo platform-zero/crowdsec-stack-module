@@ -6,7 +6,7 @@
 - Lifecycle: `active`
 
 ## Owned overlays
-- `stack.compose/crowdsec.yml`
+- `stack.runtime.yaml`
 - `stack.config/crowdsec`
 
 ## Dependencies
